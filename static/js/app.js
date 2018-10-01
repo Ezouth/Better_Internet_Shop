@@ -1,6 +1,12 @@
 // global cart variable
 var cart = [];
 
+// if cart is empty don't show Cart
+
+if (cart.length == 0){
+  $("#cart").css("display", "none");
+}
+
 $.get('./components/header.html', function(response) {
     $("#nav").html(response);
 });
@@ -62,6 +68,13 @@ function addToCart(id) {
 })}
 
 function showCart() {
+  // if cart is empty, hide, otherwise show
+  if (cart.length === 0) {
+  $("#cart").css("display", "none");
+    }
+  else {
+    $("#cart").css("display", "block");
+  }
   //define html variable to be inserted to tbody
   let html = '';
   // loop through all products in cart
