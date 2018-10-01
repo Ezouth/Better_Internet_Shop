@@ -42,7 +42,6 @@ function showProducts(response) {
 $.get('./assests/products.json', showProducts);
 
 
-// Add funcitonality later
 function addToCart(id) {
   $.get('./assests/products.json', function(response) {
     let products = response.products;
@@ -57,7 +56,30 @@ function addToCart(id) {
       }
     }
   });
+ sleep(50).then(() => {
+   showCart();
+    // Do something after the sleep!
+})}
 
+function showCart() {
+  //define html variable to be inserted to tbody
+  let html = '';
+  // loop through all products in cart
+  // TODO change total to be quantity times price
+  for (var i=0; i<cart.length; i++) {
+  html += `
+  <tr>
+    <td>1</td>
+    <td>${cart[i].title}</td>
+    <td>$${cart[i].price}</td>
+    <td>$${cart[i].price}</td>
+  </tr> `;
+}
+console.log(cart)
+  // inject html variable into table-tbody
+  $("#table-body").html(html);
+}
 
-console.log(cart);
+function sleep (time) {
+  return new Promise((resolve) => setTimeout(resolve, time));
 }
